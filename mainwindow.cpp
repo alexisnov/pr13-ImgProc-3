@@ -31,6 +31,7 @@ void MainWindow::on_pushButton_clicked()
     foreach(QString path,dir.entryList(QStringList(ext))){
         ImgProc *imgProc = new ImgProc(path,dir.path()+"\\"+path);
         connect(imgProc,SIGNAL(ready(QString)),this,SLOT(imgReady(QString)));
+        connect(imgProc, &ImgProc::finished, imgProc, &ImgProc::deleteLater);
         imgProc->start();
         threads.append(imgProc);
     }
