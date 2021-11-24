@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <imgproc.h>
+#include <QDir>
+#include <QDebug>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -14,8 +17,16 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+private slots:
+    void imgReady(QString name);//Готовность картинки
+
+    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;
+    QVector<ImgProc*> threads;//Потоки обработки
+    QString ext;//Фильтр изображений = расширение
+    QDir dir;//Рабочая папка
+    int N;//Кол-во обработанных файлов
 };
 #endif // MAINWINDOW_H

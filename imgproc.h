@@ -6,7 +6,7 @@
 /**
  * @brief Класс обработки изображения в потоке
  */
-class ImgProc:QThread
+class ImgProc:public QThread
 {
     Q_OBJECT
 public:
